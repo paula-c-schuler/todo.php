@@ -1,20 +1,8 @@
 <?php
- 
+ //********* I WANT TO ADD AUTOMATIC CAPITALIZATION OF USER INPUT***
+
 // Create array to hold list of todo items
 $items = array();
-function sort_menu($inputS, $items) {
-	if ($inputS == 'A') {
-		sort($items);
-	} elseif ($inputS == 'Z') {
-		rsort($items);
-	} elseif ($inputS == 'O') {
-		ksort($items);
-	} elseif ($inputS == 'R') {
-		krsort($items);
-	} 
-	return $items;
-	echo "List was sorted." . PHP_EOL;
-}
 // The loop!
 do {
     // Iterate through list items
@@ -28,7 +16,7 @@ do {
  
     // Get the input from user
     // Use trim() to remove whitespace and newlines
-    $input = trim(fgets(STDIN));
+    $input = strtoupper(trim(fgets(STDIN)));
  
     // Check for actionable input
     if ($input == 'N') {
@@ -44,9 +32,13 @@ do {
         // Remove from array
         unset($items[$key]);
     } elseif ($input == 'S') {
+        //add menu for sorting the array
     	echo "(A)-Z, (Z)-A, (O)rder entered, (R)everse order entered";
 
-    	$inputS = trim(fgets(STDIN));
+        //receive user input, trim and automatically capitalize
+    	$inputS = strtoupper(trim(fgets(STDIN)));
+
+        //perform what user requested
     	if ($inputS == 'A') {
 		sort($items);
 	} elseif ($inputS == 'Z') {
@@ -56,7 +48,6 @@ do {
 	} elseif ($inputS == 'R') {
 		krsort($items);
 	} 
-    	// sort_menu($inputS, $items);
     }
 // Exit when input is (Q)uit
 } while ($input != 'Q');
