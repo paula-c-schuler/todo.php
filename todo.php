@@ -3,6 +3,34 @@
 
 // Create array to hold list of todo items
 $items = array();
+
+//add a function to follow input to sort
+function sort_menu($input, $items) {
+    echo "(A)-Z, (Z)-A, (O)rder entered, (R)everse order entered: ";
+
+        //receive user input, trim and automatically capitalize
+    $inputS = strtoupper(trim(fgets(STDIN)));
+888888888888 STILL DOES NOT WORK 88888888888888
+        //perform what user requested
+    if ($inputS == 'A') {
+        asort($items);
+        return $items;
+        echo $items;
+
+    } elseif ($inputS == 'Z') {
+        arsort($items);
+        return $items;
+        echo $items;
+
+    } elseif ($inputS == 'O') {
+        ksort($items);
+        return $items;
+
+    } elseif ($inputS == 'R') {
+        krsort($items);
+        return $items;
+    } 
+}
 // The loop!
 do {
     // Iterate through list items
@@ -32,22 +60,24 @@ do {
         // Remove from array
         unset($items[$key]);
     } elseif ($input == 'S') {
+
+        sort_menu($input, $items);
         //add menu for sorting the array
-    	echo "(A)-Z, (Z)-A, (O)rder entered, (R)everse order entered";
+ //    	echo "(A)-Z, (Z)-A, (O)rder entered, (R)everse order entered";
 
-        //receive user input, trim and automatically capitalize
-    	$inputS = strtoupper(trim(fgets(STDIN)));
+ //        //receive user input, trim and automatically capitalize
+ //    	$inputS = strtoupper(trim(fgets(STDIN)));
 
-        //perform what user requested
-    	if ($inputS == 'A') {
-		sort($items);
-	} elseif ($inputS == 'Z') {
-		rsort($items);
-	} elseif ($inputS == 'O') {
-		ksort($items);
-	} elseif ($inputS == 'R') {
-		krsort($items);
-	} 
+ //        //perform what user requested
+ //    	if ($inputS == 'A') {
+	// 	asort($items);
+	// } elseif ($inputS == 'Z') {
+	// 	arsort($items);
+	// } elseif ($inputS == 'O') {
+	// 	ksort($items);
+	// } elseif ($inputS == 'R') {
+	// 	krsort($items);
+	// } 
     }
 // Exit when input is (Q)uit
 } while ($input != 'Q');
